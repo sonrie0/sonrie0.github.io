@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Dental Sonríe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 70px; /* Espacio para la barra de navegación fija */
+        }
+        
+        /* Navegación */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            background-color: rgba(0, 123, 255, 0.9);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            color: #fff;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+            font-size: 1.2rem; /* Aumenta el tamaño del texto */
+        }
+        nav a:hover {
+            background-color: #0077b6;
+        }
+
+        /* Encabezado */
+        header {
+            background-image: url('img/logo1.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 50vh; /* Hacer el encabezado de altura completa */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #2271b3;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 6rem; /* Título más grande */
+        }
+
+        header p {
+            font-size: 1.5rem; /* Aumenta el tamaño del párrafo */
+        }
+
+        /* Secciones */
+        section {
+            padding: 4rem 2rem; /* Mayor espacio en las secciones */
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h2 {
+            color: #0077b6;
+            font-size: 2.5rem; /* Mayor tamaño del encabezado */
+            margin-bottom: 1rem;
+        }
+        .content p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+
+        /* Sección de imágenes */
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Espacio mayor entre imágenes */
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .image-gallery img {
+            width: 300px; /* Imágenes más grandes */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            animation: scaleUp 0.5s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Carrusel */
+        .carousel {
+            position: relative;
+            width: 90%;
+            max-width: 1000px; /* Hacer el carrusel más ancho */
+            height: 550px; /* Hacer el carrusel más alto */
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px; /* Mayor espacio dentro de los elementos del carrusel */
+            color: #0077b6;
+            background-color: #fff;
+            text-align: center;
+        }
+        .carousel-item img {
+            max-width: 100%;
+            max-height: 300px; /* Hacer la imagen del carrusel más alta */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 15px; /* Botones más grandes */
+            font-size: 30px; /* Aumentar el tamaño del texto en botones */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        .carousel-button:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #023e8a;
+            color: #fff;
+            text-align: center;
+            padding: 2rem; /* Mayor espacio en el pie de página */
+            font-size: 1rem; /* Aumentar el tamaño del texto */
+            margin-top: 2rem;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sección de contacto */
+        .contact-info {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .social-buttons a {
+            color: #fff;
+            padding: 0.5rem;
+            margin: 0 0.5rem;
+            font-size: 30px; /* Mayor tamaño de iconos de redes sociales */
+            transition: color 0.3s ease;
+        }
+        .social-buttons a:hover {
+            color: #00b4d8;
+        }
+
+        /* Mapas */
+        .map-container {
+            margin: 2rem auto;
+            max-width: 1000px; /* Ampliar el mapa */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        iframe {
+            width: 100%;
+            height: 500px; /* Hacer el mapa más alto */
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <header>
+        <div class="header-text"> </div>
+    </header>
+    
+    <section id="inicio">
+        <h2>Bienvenidos a Clínica Dental Sonríe</h2>
+        <div class="content">
+            
+            <p><strong>Bienvenidos a la Clínica Dental Sonríe</strong>, donde la <strong>Dra. Victoria Coyotl Tecuanhuey</strong> comprometida a brindarte un servicio odontológico integral de la más alta calidad. En nuestra clínica, entendemos que tu sonrisa es una de tus mejores cartas de presentación, por lo que hemos diseñado especialidades odontológicas a la medida de tus necesidades, asegurando el cuidado óptimo de tu salud bucal.</p>
+
+            <p>Nuestro propósito va más allá de simplemente tratar los problemas dentales; queremos acompañarte en el camino hacia una sonrisa radiante y saludable. Para nosotros, cada paciente es único, y es por eso que ofrecemos un ambiente seguro, profesional y acogedor, donde podrás sentirte cómodo y confiado durante cada visita.</p>
+
+            <p>Ya sea que necesites un chequeo regular, un tratamiento especializado o simplemente desees mejorar la estética de tu sonrisa, en la Clínica Dental Sonríe, estamos aquí para apoyarte en cada paso del proceso. Tu bienestar y satisfacción son nuestra prioridad, y estamos listos para ayudarte a conseguir la sonrisa que siempre has deseado.</p>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <h2>Conócenos</h2>
+        <div class="image-gallery">
+            <img src="img/cuidardientes.jpg" alt="Cuidar dientes">
+            <img src="img/frasexd.jpg" alt="Frase divertida">
+            <img src="img/cuidar.jpg" alt="Cuidar">
+            <img src="img/dental.jpg" alt="Dental">
+            <img src="img/20.jpg" alt="Dental Halloween">
+        </div>
+    </section>
+
+   <section id="servicios" class="carousel">
+        <h2>Servicios</h2>
+        <div class="carousel-inner">
+
+            <div class="carousel-item">
+                <p><strong>Limpieza dental</strong></p>
+                <p> Eliminación de placa y sarro, y pulido de los dientes.</p>
+                <img src="img/18.jpg" alt="Instalaciones 1"> 
+            </div>
+             <div class="carousel-item">
+                <p><strong>Tratamiento de caries</strong></p>
+                <p>Rellenos dentales para reparar dientes afectados por caries.</p>
+                <img src="img/caries.jpg" alt="Instalaciones 1"> 
+            </div>
+             <div class="carousel-item">
+                <p><strong>Tratamiento de conducto</strong></p> <p>Procedimiento para tratar dientes infectados o dañados.</p>
+                <img src="img/8.jpg" alt="Instalaciones 1"> 
+            </div>
+             <div class="carousel-item">
+                <p><strong>Extracciones dentales</strong></p> <p>Remoción de dientes problemáticos o dañados</p>
+                <img src="img/4.jpg" alt="Instalaciones 1"> 
+            </div>
+            <div class="carousel-item">
+                <p><strong>Aplicación de selladores dentales</strong></p> <p>Protección adicional para dientes vulnerables, especialmente en niños</p>
+                <img src="img/5.jpg" alt="Instalaciones 1"> 
+            </div>
+            <div class="carousel-item">
+                <p><strong>Ortodoncia</strong></p> <p>Evaluación y tratamiento de problemas de alineación dental, incluyendo brackets</p>
+                <img src="img/6.jpg" alt="Instalaciones 1"> 
+            </div>
+            <div class="carousel-item">
+                <p><strong>Asesoría sobre higiene bucal </strong></p><p>Orientación sobre técnicas de cepillado y uso del hilo dental.</p>
+                <img src="img/3.jpg" alt="Instalaciones 1"> 
+            </div>
+            <div class="carousel-item">
+                <p><strong>Endodoncia </strong></p><p>En Endodoncia, tratamos infecciones en la pulpa dental, eliminando bacterias y sellando el conducto radicular para evitar que la infección </p>
+                <img src="img/8.jpg" alt="Instalaciones 1"> 
+            </div>
+             <div class="carousel-item">
+                <p><strong>Odontopediatría</strong></p> Nos encargamos del cuidado dental de los más pequeños, tratando caries, guiando el desarrollo dental y enseñando hábitos de higiene para prevenir futuros problemas.<p></p>
+                <img src="img/12.jpg" alt="Instalaciones 1"> 
+            </div>
+            <div class="carousel-item">
+                <p><strong>Odontología estética</strong></p><p>Embellecer tu sonrisa con tratamientos como blanqueamientos, carillas y coronas, corrigiendo imperfecciones y logrando un resultado natural y armonioso.</p>
+                <img src="img/10.jpg" alt="Instalaciones 1"> 
+            </div> 
+            
+        </div>
+
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="prevSlide()">❮</button>
+            <button class="carousel-button" onclick="nextSlide()">❯</button>
+        </div>
+
+    </section>
+
+    <section id="ubicacion">
+        <h2>Encuéntranos en Tlazcalanxingo</h2>
+        <p>Visítanos en nuestra clínica ubicada en Tlazcalanxingo. Consulta el mapa a continuación para encontrar la mejor ruta hacia nosotros.</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31720.92645083069!2d-98.2615032302246!3d19.173739499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0bda3e6e7d5%3A0x2726b91dd1772d70!2sTlazcalanxingo%2C%20Puebla%2C%20México!5e0!3m2!1ses-419!2sus!4v1691348207483!5m2!1ses-419!2sus" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </section>
+
+     <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact-info">
+            <p><strong>Dirección: </strong> Consultorio: Calle Cuauhtémoc Norte S /N, Tlaxcalancingo || 123 Calle Sonríe, Ciudad Dental :) </p>
+            <p><strong>Teléfono: </strong> (01222) 2840942</p>
+            <p><strong>Teléfono celular: </strong> 044 2223287652</p>
+            <p><strong>Horario: </strong> Lunes a Viernes de 9:00 a 18:00 hrs </p>
+            <p><strong>Email: </strong>clsonrie@gmail.com</p>
+
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/profile.php?id=61568158192307" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/Cl_Sonrie" target="_blank" title="Twitter (X)"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@clinica_sonrie_" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/cl_sonrie2024/"><i class="fab fa-instagram"></i></a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Clínica Dental Sonríe. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            const offset = -currentSlide * 100; // -100% para mover el carrusel
+            document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Iniciar el carrusel automáticamente
+        setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+    </script>
+
+
+
+</body>
+ </html>
